@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js Form Validation</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+
+<div id="app">
+  <form @submit.prevent="submitForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" v-model="username" required>
+    <p v-if="!isValidUsername">Please enter a valid username.</p>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" v-model="email" required>
+    <p v-if="!isValidEmail">Please enter a valid email address.</p>
+
+    <button type="submit" :disabled="!isValidForm">Submit</button>
+  </form>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      username: '',
+      email: ''
+    },
+    computed: {
+      isValidUsername() {
+        // Implement your username validation logic
+        return this.username.length > 0;
+      },
+      isValidEmail() {
+        // Implement your email validation logic
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
+      },
+      isValidForm() {
+        return this.isValidUsername && this.isValidEmail;
+      }
+    },
+    methods: {
+      submitForm() {
+        alert('Form submitted!');
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
