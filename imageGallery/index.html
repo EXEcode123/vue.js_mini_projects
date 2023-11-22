@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js Image Gallery</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+
+<div id="app">
+  <img v-for="(image, index) in images" :src="image" :alt="'Image ' + (index + 1)" @click="openImage(index)">
+  <div v-if="selectedImage !== null" @click="closeImage" id="overlay">
+    <img :src="images[selectedImage]" :alt="'Image ' + (selectedImage + 1)">
+  </div>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      images: ["https://shorturl.at/oBHX5", "https://shorturl.at/izADI", "https://shorturl.at/guABR"],
+      selectedImage: null
+    },
+    methods: {
+      openImage(index) {
+        this.selectedImage = index;
+      },
+      closeImage() {
+        this.selectedImage = null;
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
