@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js Random Quote Generator</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+
+<div id="app">
+  <p>{{ currentQuote }}</p>
+  <button @click="getRandomQuote">Get Random Quote</button>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      quotes: ["Waste no more time arguing about what a good man should be ~Marcus Aurelius", "Everything in life is luck ~Donald Trump", "I grow wiser with every scar ~Andrew Tate"],
+      currentQuote: ''
+    },
+    methods: {
+      getRandomQuote() {
+        const randomIndex = Math.floor(Math.random() * this.quotes.length);
+        this.currentQuote = this.quotes[randomIndex];
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
